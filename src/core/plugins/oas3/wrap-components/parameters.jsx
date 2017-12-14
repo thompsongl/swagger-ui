@@ -33,7 +33,8 @@ class Parameters extends Component {
     onTryoutClick: PropTypes.func,
     onCancelClick: PropTypes.func,
     onChangeKey: PropTypes.array,
-    pathMethod: PropTypes.array.isRequired
+    pathMethod: PropTypes.array.isRequired,
+    toggleTab: PropTypes.func
   }
 
 
@@ -94,7 +95,8 @@ class Parameters extends Component {
       oas3Selectors,
       pathMethod,
       specPath,
-      operation
+      operation,
+      toggleTab
     } = this.props
 
     const ParameterRow = getComponent("parameterRow")
@@ -108,6 +110,8 @@ class Parameters extends Component {
 
     const requestBody = operation.get("requestBody")
     const requestBodySpecPath = [...specPath.slice(0, -1), "requestBody"] // remove the "parameters" part
+
+    this.toggleTab = toggleTab || this.toggleTab
 
     return (
       <div className="opblock-section">
